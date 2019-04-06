@@ -1,6 +1,9 @@
 package cn.foobar.forum.service;
 
+import cn.foobar.forum.entity.Category;
 import cn.foobar.forum.entity.Topic;
+
+import java.util.List;
 
 /**
  * @Author TopicService
@@ -14,17 +17,25 @@ public interface TopicService {
      * 用户创建主题
      * @param topic
      */
-    void createTopic(Topic topic);
-
-    /**
-     * 用户编辑主题
-     * @param topic
-     */
-    void editTopic(Topic topic);
+    void saveTopic(Topic topic);
 
     /**
      * 用户删除主题
-     * @param topicId
+     * @param topic
      */
-    void deleteTopic(Long userId, Long topicId);
+    void deleteTopic(Topic topic);
+
+    /**
+     * 根据 catId 获取所有 Topic
+     * @param category
+     * @return
+     */
+    List<Topic> getTopicsByCategory(Category category);
+
+    /**
+     * 根据 topicId 获取 topic
+     * @param topicId
+     * @return
+     */
+    Topic getTopicByTopicId(Long topicId);
 }

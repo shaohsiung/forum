@@ -1,7 +1,10 @@
 package cn.foobar.forum.repository;
 
 import cn.foobar.forum.entity.Post;
+import cn.foobar.forum.entity.Topic;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 
 /**
  * @Author PostRepository
@@ -10,4 +13,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @Description
  **/
 public interface PostRepository extends JpaRepository<Post, Long> {
+
+    List<Post> getPostsByPostTopic(Topic topic);
 }

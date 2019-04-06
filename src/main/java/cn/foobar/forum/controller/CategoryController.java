@@ -5,6 +5,7 @@ import cn.foobar.forum.entity.Category;
 import cn.foobar.forum.entity.User;
 import cn.foobar.forum.entity.UserState;
 import cn.foobar.forum.service.CategoryService;
+import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.usertype.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @Author CategoryController
@@ -49,5 +51,12 @@ public class CategoryController {
         // 查看category
         log.info("Category: {}", category);
         return Result.builder().status("201").message("分类创建成功!").entity(category).build();
+    }
+
+    @GetMapping(path = "/", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public Result getAllCategory() {
+        List<Category> categories = categoryService.getAllCategories();
+        return Result.builder().status("200").message("获取所有分类成功!").entity(categories).build();
     }
 }

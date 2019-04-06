@@ -17,4 +17,11 @@ public interface CategoryService {
      * @return
      */
     List<Category> getAllCategories();
+
+    /**
+     * 根据catId获取分类
+     * @param catId
+     * @return
+     */
+    Category findCategoryById(Long catId);
 }
