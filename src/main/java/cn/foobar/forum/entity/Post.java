@@ -40,6 +40,6 @@ public class Post extends BaseEntity {
     private Topic postTopic;
 
     @ManyToOne
-    @JoinColumn(name = "topic_by", nullable = false)
-    private User topicBy;
+    @JoinColumn(name = "post_by", nullable = false)
+    private User postBy;
 }

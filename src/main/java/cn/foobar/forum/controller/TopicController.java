@@ -63,6 +63,9 @@ public class TopicController {
         topic.setTopicBy(user);
         topic.setTopicCat(category);
         topicService.saveTopic(topic);
+
+        // 处理用户敏感信息
+        topic.getTopicBy().setUserPass(null);
         return Result.builder().status("200").message("主题发表成功!").entity(topic).build();
     }
 
