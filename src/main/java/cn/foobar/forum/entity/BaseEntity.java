@@ -12,7 +12,5 @@ import java.io.Serializable;
  * @Description
  **/
 @MappedSuperclass
-@Data
-@AllArgsConstructor
 public class BaseEntity implements Serializable {
 }

@@ -1,5 +1,5 @@
 package cn.foobar.forum.entity;
 
-public enum State {
+public enum UserState {
     USER, ADMIN
 }

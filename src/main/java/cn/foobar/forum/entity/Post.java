@@ -1,5 +1,7 @@
 package cn.foobar.forum.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,6 +19,8 @@ import java.util.Date;
 @Table(name = "posts")
 @ToString(callSuper = true)
 @NoArgsConstructor
+@Data
+@AllArgsConstructor
 public class Post extends BaseEntity {
 
     @Id
