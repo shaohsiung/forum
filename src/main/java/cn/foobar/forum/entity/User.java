@@ -7,6 +7,9 @@ import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -29,12 +32,15 @@ public class User extends BaseEntity {
     private Long userId;
 
     @Column(name = "user_name", length = 30, unique = true, nullable = false)
+    @NotBlank
     private String userName;
 
     @Column(name = "user_pass", nullable = false)
+    @NotBlank
     private String userPass;
 
     @Column(name = "user_email", nullable = false)
+    @NotNull
     private String userEmail;
 
     /**

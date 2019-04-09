@@ -8,10 +8,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @Author UserController
@@ -35,8 +40,22 @@ public class UserController {
     @PostMapping(path = "/", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public Result register(@RequestBody User user) {
-        // TODO 参数校验
+    public Result register(@Valid @RequestBody User user, BindingResult result) {
+        // 参数校验
+        if (result.hasErrors()) {
+            //log.warn("Binding Errors: {}", result);
+
+            // 将list的数据转移到map中
+            Map errMessages = new HashMap();
+            List<FieldError> fieldErrors = result.getFieldErrors();
+            fieldErrors.forEach(fieldError -> {
+                errMessages.put(fieldError.getField(), fieldError.getDefaultMessage());
+            });
+
+            // 返回map 保存出错信息
+            return Result.builder().status("400").message("注册失败").entity(errMessages).build();
+        }
+
 
         // 使用SHA1加密用户密码
         String sha1Pass = SHA1Utils.encryptThisString(user.getUserPass());
