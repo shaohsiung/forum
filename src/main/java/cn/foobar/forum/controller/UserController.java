@@ -24,9 +24,9 @@ import java.util.Map;
  * @Version 1.0.0
  * @Description
  **/
-@RestController
-@RequestMapping("/user")
 @Slf4j
+@RestController
+@RequestMapping(path = "/user")
 public class UserController {
 
     @Autowired

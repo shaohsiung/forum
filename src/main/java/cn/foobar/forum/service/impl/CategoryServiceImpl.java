@@ -4,6 +4,8 @@ import cn.foobar.forum.entity.Category;
 import cn.foobar.forum.repository.CategoryRepository;
 import cn.foobar.forum.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
